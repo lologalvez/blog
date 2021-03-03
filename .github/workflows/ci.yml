@@ -27,12 +27,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-      steps:
-        - name: checkout
-        - uses: actions/checkout@v2
+    steps:
+      - name: checkout
+      - uses: actions/checkout@v2
 
-        - name: download artifact
-        - uses: actions/download-artifact@v2
+      - name: download artifact
+      - uses: actions/download-artifact@v2
 
-        - name: run tests
-        - run: make test
+      - name: run tests
+      - run: make test
