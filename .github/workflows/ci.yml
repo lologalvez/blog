@@ -25,6 +25,7 @@ jobs:
           path: /tmp/image.tar
 
   test:
+    needs: [ build ]
     runs-on: ubuntu-latest
 
     steps:
