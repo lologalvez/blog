@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+      - uses: actions/checkout@v2
+
+      - name: run containers
+      - run: make up
+
+      - name: install dependencies
+      - run: make install-dependencies
+
+      - name: upload artifact
+      - uses: actions/upload-artifact@v2
+      - with:
+          name: api
+          path: /tmp/image.tar
+
+  test:
+    runs-on: ubuntu-latest
+
+      steps:
+        - name: checkout
+        - uses: actions/checkout@v2
+
+        - name: download artifact
+        - uses: actions/download-artifact@v2
+
+        - name: run tests
+        - run: make test
