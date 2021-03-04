@@ -5,26 +5,18 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: run containers
+      - name: up containers
         run: make up
 
       - name: install dependencies
         run: make install-dependencies
-
-  test:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
 
       - name: run tests
         run: make test
