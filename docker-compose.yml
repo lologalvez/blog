@@ -7,3 +7,10 @@ services:
     container_name: blog.api
     volumes:
       - .:/app:cached
+  mysql:
+    image: mysql:5.6
+    env_file:
+      - .env.dev
+    container_name: blog.mysql
+    ports:
+      - 33066:3306
