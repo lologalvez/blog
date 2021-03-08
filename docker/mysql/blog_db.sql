@@ -15,5 +15,4 @@ CREATE TABLE `authors` (
     `avatar` varchar(256) NOT NULL,
     `social_media` text,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=urf8mb4;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
