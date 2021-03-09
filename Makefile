@@ -1,5 +1,6 @@
 up: ## Up all services
 	docker-compose up -d
+	$(MAKE) migrate-db
 
 down: ## Down all services
 	docker-compose down
@@ -12,3 +13,11 @@ test: ## Run test suites
 
 install-dependencies:
 	docker exec blog.api composer install
+
+migrate-db: wait-mysql-connection
+	docker exec blog.api ./vendor/bin/doctrine-migrations migrate
+
+wait-mysql-connection: ## Wait for MySql to be ready
+	docker-compose run blog-api ./bin/wait-mysql-connection
+
+
