@@ -7,10 +7,20 @@ services:
     container_name: blog.api
     volumes:
       - .:/app:cached
-    ports:
-      - 8000:8000
 
-  mysql:
+  blog-nginx:
+    build:
+      dockerfile: docker/nginx/Dockerfile
+      context: .
+    container_name: blog.nginx
+    depends_on:
+      - blog-api
+    ports:
+      - "8088:80"
+    volumes:
+      - ".:/app"
+
+  blog-mysql:
     image: mysql:5.6
     env_file:
       - .env.dev
