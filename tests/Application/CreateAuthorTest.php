@@ -14,7 +14,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class CreateAuthorTest extends TestCase
 {
     use ProphecyTrait;
-    
+
     private $authorRepository;
     private $idGenerator;
     private CreateAuthor $createAuthor;
@@ -23,10 +23,13 @@ class CreateAuthorTest extends TestCase
     {
         $this->authorRepository = $this->prophesize(AuthorRepository::class);
         $this->idGenerator = $this->prophesize(IdGenerator::class);
-        $this->createAuthor = new CreateAuthor($this->authorRepository->reveal());
+        $this->createAuthor = new CreateAuthor(
+            $this->authorRepository->reveal(),
+            $this->idGenerator->reveal()
+        );
     }
 
-    /** @ test */
+    /** @test */
     public function should_save_an_author_to_repository(): void
     {
         $author = [
