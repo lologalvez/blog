@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Application;
+namespace App\Tests\unit\Application;
 
 use App\Application\CreateAuthor;
 use App\Domain\Model\Author\AuthorRepository;
 use App\Domain\Utils\IdGenerator;
-use App\Tests\Domain\Model\Author\AuthorBuilder;
+use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -32,7 +32,7 @@ class CreateAuthorTest extends TestCase
     /** @test */
     public function should_save_an_author_to_repository(): void
     {
-        $author = [
+        $authorData = [
             'name' => 'an author name',
             'alias' => 'an author alias',
             'email' => 'an@email.dev',
@@ -45,7 +45,7 @@ class CreateAuthorTest extends TestCase
         ];
         $this->idGenerator->generate()->willReturn('an author id');
 
-        $this->createAuthor->execute($author);
+        $this->createAuthor->execute($authorData);
 
         $expectedAuthor = AuthorBuilder::anAuthor()
             ->withId('an author id')

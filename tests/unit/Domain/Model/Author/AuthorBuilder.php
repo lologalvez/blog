@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Domain\Model\Author;
+namespace App\Tests\unit\Domain\Model\Author;
 
 use App\Domain\Model\Author\Author;
 
