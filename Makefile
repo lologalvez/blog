@@ -1,5 +1,6 @@
 up: ## Up all services
 	docker-compose up -d
+	$(MAKE) install-dependencies
 	$(MAKE) migrate-db
 
 down: ## Down all services
