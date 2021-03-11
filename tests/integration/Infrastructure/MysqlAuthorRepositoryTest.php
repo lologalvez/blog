@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Tests\integration\Infrastructure;
 
 use App\Infrastructure\MySqlAuthorRepository;
@@ -10,7 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class MysqlAuthorRepositoryTest extends TestCase
 {
+    private const EMAIL = 'an_email';
+
     private $connection;
+    private $mySqlAuthorRepository;
 
     protected function setUp(): void
     {
@@ -21,15 +23,24 @@ class MysqlAuthorRepositoryTest extends TestCase
             'host' => 'blog.mysql',
             'driver' => 'pdo_mysql',
         ]);
+
+        $this->mySqlAuthorRepository = new MySqlAuthorRepository($this->connection);
+
+        $this->clearDataBase();
     }
+
+    protected function tearDown(): void
+    {
+        $this->clearDataBase();
+    }
+
     /** @test */
     public function should_save_an_author_to_database(): void
     {
-        $email = 'an email';
+        $email = 'an_email';
         $author = AuthorBuilder::anAuthor()->withEmail($email)->build();
-        $mysqlAuthorRepository = new MySqlAuthorRepository($this->connection);
 
-        $mysqlAuthorRepository->save($author);
+        $this->mySqlAuthorRepository->save($author);
 
         self::assertTrue($this->authorExists($email));
     }
@@ -46,5 +57,13 @@ class MysqlAuthorRepositoryTest extends TestCase
         }
 
         return true;
+    }
+
+    private function clearDataBase(): void
+    {
+        $this->connection->executeQuery(
+            "DELETE FROM authors where contact_email=:email",
+            ['email' => self::EMAIL]
+        );
     }
 }

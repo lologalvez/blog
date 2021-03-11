@@ -74,4 +74,44 @@ class Author
     {
         $this->socialMediaLinks = $socialMediaLinks;
     }
+
+    public function id(): string
+    {
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function alias(): string
+    {
+        return $this->alias;
+    }
+
+    public function email(): string
+    {
+        return $this->email;
+    }
+
+    public function description(): string
+    {
+        return $this->description;
+    }
+
+    public function shortDescription(): string
+    {
+        return $this->shortDescription;
+    }
+
+    public function avatar(): string
+    {
+        return $this->avatar;
+    }
+
+    public function socialMediaLinks(): array
+    {
+        return $this->socialMediaLinks;
+    }
 }
