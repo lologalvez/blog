@@ -10,9 +10,8 @@ class Id
 {
     private string $id;
 
-    public function __construct(?string $id)
+    public function __construct(string $id)
     {
-        $id = mb_strtolower($id);
         Assert::uuid($id);
         $this->id = $id;
     }
