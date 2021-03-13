@@ -34,11 +34,13 @@ class AuthorBuilder
     {
         return new self();
     }
+
     public function withId(Id $id): self
     {
         $this->id = $id;
         return $this;
     }
+
     public function withName(string $name): self
     {
         $this->name = $name;
@@ -79,6 +81,7 @@ class AuthorBuilder
         $this->socialMediaLinks = $socialMediaLinks;
         return $this;
     }
+
     public function build(): Author
     {
         return new Author(
