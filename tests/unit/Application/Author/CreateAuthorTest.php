@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\unit\Application;
+namespace App\Tests\unit\Application\Author;
 
-use App\Application\CreateAuthor;
+use App\Application\Author\CreateAuthor;
 use App\Domain\Model\Author\AuthorRepository;
-use App\Domain\Utils\IdGenerator;
+use App\Domain\Model\Id\Id;
+use App\Domain\Model\Id\IdGenerator;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -14,6 +15,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class CreateAuthorTest extends TestCase
 {
     use ProphecyTrait;
+
+    private const AUTHOR_ID = '0d67e364-813b-42a2-ba3f-20a86fc2c274';
 
     private $authorRepository;
     private $idGenerator;
@@ -43,12 +46,12 @@ class CreateAuthorTest extends TestCase
                 'instagram' => 'an instagram link',
             ],
         ];
-        $this->idGenerator->generate()->willReturn('an author id');
+        $this->idGenerator->generate()->willReturn(new Id(self::AUTHOR_ID));
 
         $this->createAuthor->execute($authorData);
 
         $expectedAuthor = AuthorBuilder::anAuthor()
-            ->withId('an author id')
+            ->withId(new Id(self::AUTHOR_ID))
             ->withName('an author name')
             ->withAlias('an author alias')
             ->withEmail('an@email.dev')

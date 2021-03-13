@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\Author;
 
+use App\Domain\Model\Id\Id;
+
 class Author
 {
-    private string $id;
+    private Id $id;
     private string $name;
     private string $alias;
     private string $email;
@@ -16,7 +18,7 @@ class Author
     private array $socialMediaLinks;
 
     public function __construct(
-        string $id,
+        Id $id,
         string $name,
         string $alias,
         string $email,
@@ -35,7 +37,7 @@ class Author
         $this->setSocialMediaLinks($socialMediaLinks);
     }
 
-    private function setId(string $id)
+    private function setId(Id $id)
     {
         $this->id = $id;
     }
@@ -75,7 +77,7 @@ class Author
         $this->socialMediaLinks = $socialMediaLinks;
     }
 
-    public function id(): string
+    public function id(): Id
     {
         return $this->id;
     }

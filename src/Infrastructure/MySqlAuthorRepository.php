@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Infrastructure;
 
 use App\Domain\Model\Author\Author;
@@ -20,7 +19,7 @@ class MySqlAuthorRepository
         $this->connection->insert(
             'authors',
             [
-                'id' => $author->id(),
+                'id' => $author->id()->toString(),
                 'name' => $author->name(),
                 'alias' => $author->alias(),
                 'contact_email' => $author->email(),

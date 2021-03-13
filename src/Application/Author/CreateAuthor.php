@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Application;
+namespace App\Application\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
-use App\Domain\Utils\IdGenerator;
+use App\Domain\Model\Id\IdGenerator;
 
 class CreateAuthor
 {

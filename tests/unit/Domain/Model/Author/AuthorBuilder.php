@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\unit\Domain\Model\Author;
 
 use App\Domain\Model\Author\Author;
+use App\Domain\Model\Id\Id;
 
 class AuthorBuilder
 {
-    private string $id;
+    private Id $id;
     private string $name;
     private string $alias;
     private string $email;
@@ -19,7 +20,7 @@ class AuthorBuilder
 
     private function __construct()
     {
-        $this->id = 'a default id';
+        $this->id = new Id('00000000-0000-0000-0000-000000000000');
         $this->name = 'a default author name';
         $this->alias = 'a default alias';
         $this->email = 'a default email';
@@ -33,7 +34,7 @@ class AuthorBuilder
     {
         return new self();
     }
-    public function withId(string $id): self
+    public function withId(Id $id): self
     {
         $this->id = $id;
         return $this;
