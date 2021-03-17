@@ -4,6 +4,6 @@ namespace App\Domain\Model\Author;
 
 use Exception;
 
-class InvalidNameException extends Exception
+class InvalidAliasException extends Exception
 {
 }
