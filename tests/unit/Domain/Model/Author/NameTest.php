@@ -4,7 +4,6 @@ namespace App\Tests\unit\Domain\Model\Author;
 
 use App\Domain\Model\Author\InvalidNameException;
 use App\Domain\Model\Author\Name;
-use App\Domain\Model\Author\NameIsTooLongException;
 use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase
@@ -30,7 +29,14 @@ class NameTest extends TestCase
     /** @test */
     public function should_not_allow_names_with_length_over_15_characters(): void
     {
-        $this->expectException(NameIsTooLongException::class);
-        new Name('a name that is over fifteen characters');
+        $this->expectException(InvalidNameException::class);
+        new Name('a name that is too long');
+    }
+
+    /** @test */
+    public function should_not_allow_an_empty_name(): void
+    {
+        $this->expectException(InvalidNameException::class);
+        new Name('');
     }
 }

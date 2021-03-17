@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Model\Author;
 
 class Name
@@ -20,7 +19,7 @@ class Name
 
     private function isValid(string $name)
     {
-        if (preg_match('/^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/', $name)) {
+        if (!preg_match('/^([A-Za-z-À-ÿ\s]{1,15})$/', $name)) {
             throw new InvalidNameException();
         }
     }
