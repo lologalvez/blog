@@ -1,5 +1,5 @@
 init:
-	docker-compose up -d
+	docker-compose up --build -d
 	$(MAKE) install-dependencies
 	$(MAKE) migrate-db
 
