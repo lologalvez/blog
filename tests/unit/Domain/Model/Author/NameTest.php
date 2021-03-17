@@ -8,7 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase
 {
-    /** @test
+    /**
+     * @test
      * @dataProvider invalidNamesDataProvider
      */
     public function should_not_allow_numbers_or_symbols(string $invalidName): void
