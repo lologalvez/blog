@@ -15,15 +15,14 @@ class AliasTest extends TestCase
         new Alias('an alias that is too long');
     }
 
-    /** @ test */
+    /** @test */
     public function should_not_allow_aliases_with_white_spaces(): void
     {
         $this->expectException(InvalidAliasException::class);
         new Alias('an alias');
     }
 
-
-    /** @ test */
+    /** @test */
     public function should_not_allow_an_empty_alias(): void
     {
         $this->expectException(InvalidAliasException::class);

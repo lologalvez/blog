@@ -19,5 +19,8 @@ class Alias
 
     private function isValid(string $alias)
     {
+        if  (!preg_match('/^[^\s]{1,9}$/', $alias)) {
+            throw new InvalidAliasException();
+        }
     }
 }
