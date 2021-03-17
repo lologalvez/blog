@@ -4,6 +4,7 @@ namespace App\Domain\Model\Author;
 
 class Alias
 {
+    const MAX_LENGTH = 9;
     private string $alias;
 
     public function __construct(string $alias)
@@ -19,8 +20,20 @@ class Alias
 
     private function isValid(string $alias)
     {
-        if  (!preg_match('/^[^\s]{1,9}$/', $alias)) {
-            throw new InvalidAliasException();
+        if (strlen($alias) > self::MAX_LENGTH) {
+            throw new InvalidAuthorDataException(
+                sprintf("Alias is too long. It should be less than %s characters", self::MAX_LENGTH)
+            );
         }
+
+        if (preg_match('/\s/', $alias)) {
+            throw new InvalidAuthorDataException('Alias cannot contain whitespaces');
+        }
+
+        if (empty($alias)) {
+            throw new InvalidAuthorDataException('Alias cannot be empty');
+        }
+
+
     }
 }
