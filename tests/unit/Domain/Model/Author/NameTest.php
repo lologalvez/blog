@@ -12,7 +12,7 @@ class NameTest extends TestCase
      * @test
      * @dataProvider invalidNamesDataProvider
      */
-    public function should_not_allow_numbers_or_symbols(string $invalidName): void
+    public function should_not_allow_numbers_or_special_characters(string $invalidName): void
     {
         $this->expectException(InvalidNameException::class);
         new Name($invalidName);
@@ -21,7 +21,8 @@ class NameTest extends TestCase
     public function invalidNamesDataProvider()
     {
         return [
-            'name that contains numbers' => ['a1b2c3']
+            'name that contains numbers' => ['a1b2c3'],
+            'name that contains special characters' => ['n@ames']
         ];
     }
 }
