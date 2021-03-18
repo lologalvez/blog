@@ -5,6 +5,7 @@ namespace App\Domain\Model\Author\Data;
 class Alias
 {
     private const MAX_LENGTH = 9;
+
     private string $alias;
 
     public function __construct(string $alias)
@@ -14,11 +15,11 @@ class Alias
 
     private function setAlias(string $alias)
     {
-        $this->isValid($alias);
+        $this->validate($alias);
         $this->alias = $alias;
     }
 
-    private function isValid(string $alias)
+    private function validate(string $alias)
     {
         if (strlen($alias) > self::MAX_LENGTH) {
             throw new InvalidAuthorDataException(

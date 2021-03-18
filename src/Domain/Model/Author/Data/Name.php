@@ -5,6 +5,7 @@ namespace App\Domain\Model\Author\Data;
 class Name
 {
     private const MAX_LENGTH = 15;
+
     private string $name;
 
     public function __construct(string $name)
@@ -14,11 +15,11 @@ class Name
 
     private function setName(string $name)
     {
-        $this->isValid($name);
+        $this->validate($name);
         $this->name = $name;
     }
 
-    private function isValid(string $name)
+    private function validate(string $name)
     {
         if (empty($name)) {
             throw new InvalidAuthorDataException('Name cannot be empty');
