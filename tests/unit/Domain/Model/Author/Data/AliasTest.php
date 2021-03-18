@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\unit\Domain\Model\Author;
+namespace App\Tests\unit\Domain\Model\Author\Data;
 
-use App\Domain\Model\Author\InvalidAuthorDataException;
+use App\Domain\Model\Author\Data\InvalidAuthorDataException;
 use PHPUnit\Framework\TestCase;
-use App\Domain\Model\Author\Alias;
+use App\Domain\Model\Author\Data\Alias;
 
 class AliasTest extends TestCase
 {

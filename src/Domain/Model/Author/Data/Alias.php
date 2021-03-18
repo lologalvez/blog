@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Model\Author;
+namespace App\Domain\Model\Author\Data;
 
 class Alias
 {
-    const MAX_LENGTH = 9;
+    private const MAX_LENGTH = 9;
     private string $alias;
 
     public function __construct(string $alias)

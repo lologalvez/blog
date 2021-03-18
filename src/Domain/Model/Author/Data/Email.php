@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Model\Author;
+namespace App\Domain\Model\Author\Data;
 
 class Email
 {

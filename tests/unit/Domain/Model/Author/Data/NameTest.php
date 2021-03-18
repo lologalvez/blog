@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\unit\Domain\Model\Author;
+namespace App\Tests\unit\Domain\Model\Author\Data;
 
-use App\Domain\Model\Author\InvalidAuthorDataException;
-use App\Domain\Model\Author\Name;
+use App\Domain\Model\Author\Data\InvalidAuthorDataException;
+use App\Domain\Model\Author\Data\Name;
 use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase

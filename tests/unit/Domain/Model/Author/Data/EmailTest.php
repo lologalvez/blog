@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\unit\Domain\Model\Author;
+namespace App\Tests\unit\Domain\Model\Author\Data;
 
-use App\Domain\Model\Author\Email;
-use App\Domain\Model\Author\InvalidAuthorDataException;
+use App\Domain\Model\Author\Data\Email;
+use App\Domain\Model\Author\Data\InvalidAuthorDataException;
 use PHPUnit\Framework\TestCase;
 
 class EmailTest extends TestCase
