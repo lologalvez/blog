@@ -2,7 +2,6 @@
 
 namespace App\Tests\unit\Domain\Model\Author;
 
-use App\Domain\Model\Author\InvalidAliasException;
 use App\Domain\Model\Author\InvalidAuthorDataException;
 use PHPUnit\Framework\TestCase;
 use App\Domain\Model\Author\Alias;
@@ -13,8 +12,8 @@ class AliasTest extends TestCase
     public function should_not_allow_aliases_with_length_over_9_characters(): void
     {
         $this->expectException(InvalidAuthorDataException::class);
-        $this->expectExceptionMessage('Alias is too long');
-        new Alias('an alias that is too long');
+        $this->expectExceptionMessage("Alias should be less than 9 characters");
+        new Alias('an_alias_that_is_too_long');
     }
 
     /** @test */

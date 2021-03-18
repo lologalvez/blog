@@ -22,7 +22,7 @@ class Alias
     {
         if (strlen($alias) > self::MAX_LENGTH) {
             throw new InvalidAuthorDataException(
-                sprintf("Alias is too long. It should be less than %s characters", self::MAX_LENGTH)
+                sprintf("Alias should be less than %s characters", self::MAX_LENGTH)
             );
         }
 
@@ -33,7 +33,5 @@ class Alias
         if (empty($alias)) {
             throw new InvalidAuthorDataException('Alias cannot be empty');
         }
-
-
     }
 }
