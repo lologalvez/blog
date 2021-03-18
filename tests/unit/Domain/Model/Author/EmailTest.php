@@ -9,9 +9,10 @@ use PHPUnit\Framework\TestCase;
 class EmailTest extends TestCase
 {
     /** @test */
-    public function should_not_allow_invalid_email(): void
+    public function should_not_allow_an_invalid_email_format(): void
     {
-        $this->expectException(new InvalidAuthorDataException('Invalid email format'));
+        $this->expectException(InvalidAuthorDataException::class);
+        $this->expectExceptionMessage('Invalid email format');
         new Email('an invalid email');
     }
 }
