@@ -23,4 +23,9 @@ class Email
             throw new InvalidAuthorDataException('Invalid email format');
         }
     }
+
+    public function toString(): string
+    {
+        return $this->email;
+    }
 }

@@ -29,4 +29,9 @@ class Description
             );
         }
     }
+
+    public function toString(): string
+    {
+        return $this->description;
+    }
 }

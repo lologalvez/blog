@@ -29,4 +29,9 @@ class ShortDescription
             );
         }
     }
+
+    public function toString(): string
+    {
+        return $this->shortDescription;
+    }
 }

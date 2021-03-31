@@ -6,6 +6,11 @@ namespace App\Tests\unit\Application\Author;
 
 use App\Application\Author\CreateAuthor;
 use App\Domain\Model\Author\AuthorRepository;
+use App\Domain\Model\Author\Data\Alias;
+use App\Domain\Model\Author\Data\Description;
+use App\Domain\Model\Author\Data\Email;
+use App\Domain\Model\Author\Data\Name;
+use App\Domain\Model\Author\Data\ShortDescription;
 use App\Domain\Model\Id\Id;
 use App\Domain\Model\Id\IdGenerator;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
@@ -37,7 +42,7 @@ class CreateAuthorTest extends TestCase
     {
         $authorData = [
             'name' => 'an author name',
-            'alias' => 'an author alias',
+            'alias' => 'an_alias',
             'email' => 'an@email.dev',
             'description' => 'a description',
             'short_description' => 'a short description',
@@ -52,11 +57,11 @@ class CreateAuthorTest extends TestCase
 
         $expectedAuthor = AuthorBuilder::anAuthor()
             ->withId(new Id(self::AUTHOR_ID))
-            ->withName('an author name')
-            ->withAlias('an author alias')
-            ->withEmail('an@email.dev')
-            ->withDescription('a description')
-            ->withShortDescription('a short description')
+            ->withName(new Name('an author name'))
+            ->withAlias(new Alias('an_alias'))
+            ->withEmail(new Email('an@email.dev'))
+            ->withDescription(new Description('a description'))
+            ->withShortDescription(new ShortDescription('a short description'))
             ->withAvatar('an avatar')
             ->withSocialMediaLinks(['instagram' => 'an instagram link'])
             ->build();

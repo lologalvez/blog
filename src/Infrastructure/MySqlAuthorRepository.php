@@ -20,11 +20,11 @@ class MySqlAuthorRepository
             'authors',
             [
                 'id' => $author->id()->toString(),
-                'name' => $author->name(),
-                'alias' => $author->alias(),
-                'contact_email' => $author->email(),
-                'personal_description' => $author->description(),
-                'short_description' => $author->shortDescription(),
+                'name' => $author->name()->toString(),
+                'alias' => $author->alias()->toString(),
+                'contact_email' => $author->email()->toString(),
+                'personal_description' => $author->description()->toString(),
+                'short_description' => $author->shortDescription()->toString(),
                 'avatar' => $author->avatar(),
                 'social_media' => json_encode($author->socialMediaLinks(), true)
             ]

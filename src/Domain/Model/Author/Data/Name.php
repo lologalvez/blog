@@ -35,4 +35,9 @@ class Name
             throw new InvalidAuthorDataException('Name must contain letters only');
         }
     }
+
+    public function toString(): string
+    {
+        return $this->name;
+    }
 }

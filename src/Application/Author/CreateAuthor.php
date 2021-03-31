@@ -6,6 +6,11 @@ namespace App\Application\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
+use App\Domain\Model\Author\Data\Alias;
+use App\Domain\Model\Author\Data\Description;
+use App\Domain\Model\Author\Data\Email;
+use App\Domain\Model\Author\Data\Name;
+use App\Domain\Model\Author\Data\ShortDescription;
 use App\Domain\Model\Id\IdGenerator;
 
 class CreateAuthor
@@ -23,11 +28,11 @@ class CreateAuthor
     {
         $author = new Author(
             $this->idGenerator->generate(),
-            $authorData['name'],
-            $authorData['alias'],
-            $authorData['email'],
-            $authorData['description'],
-            $authorData['short_description'],
+            new Name($authorData['name']),
+            new Alias($authorData['alias']),
+            new Email($authorData['email']),
+            new Description($authorData['description']),
+            new ShortDescription($authorData['short_description']),
             $authorData['avatar'],
             $authorData['social_media_links']
         );

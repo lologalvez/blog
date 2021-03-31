@@ -35,4 +35,9 @@ class Alias
             throw new InvalidAuthorDataException('Alias cannot be empty');
         }
     }
+
+    public function toString(): string
+    {
+        return $this->alias;
+    }
 }

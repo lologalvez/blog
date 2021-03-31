@@ -4,26 +4,31 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\Author;
 
+use App\Domain\Model\Author\Data\Alias;
+use App\Domain\Model\Author\Data\Description;
+use App\Domain\Model\Author\Data\Email;
+use App\Domain\Model\Author\Data\Name;
+use App\Domain\Model\Author\Data\ShortDescription;
 use App\Domain\Model\Id\Id;
 
 class Author
 {
     private Id $id;
-    private string $name;
-    private string $alias;
-    private string $email;
-    private string $description;
-    private string $shortDescription;
+    private Name $name;
+    private Alias $alias;
+    private Email $email;
+    private Description $description;
+    private ShortDescription $shortDescription;
     private string $avatar;
     private array $socialMediaLinks;
 
     public function __construct(
         Id $id,
-        string $name,
-        string $alias,
-        string $email,
-        string $description,
-        string $shortDescription,
+        Name $name,
+        Alias $alias,
+        Email $email,
+        Description $description,
+        ShortDescription $shortDescription,
         string $avatar,
         array $socialMediaLinks
     ) {
@@ -42,27 +47,27 @@ class Author
         $this->id = $id;
     }
 
-    private function setName(string $name)
+    private function setName(Name $name)
     {
         $this->name = $name ;
     }
 
-    private function setAlias(string $alias)
+    private function setAlias(Alias $alias)
     {
         $this->alias = $alias;
     }
 
-    private function setEmail(string $email): void
+    private function setEmail(Email $email): void
     {
         $this->email = $email;
     }
 
-    private function setDescription(string $description): void
+    private function setDescription(Description $description): void
     {
         $this->description = $description;
     }
 
-    private function setShortDescription(string $shortDescription): void
+    private function setShortDescription(ShortDescription $shortDescription): void
     {
         $this->shortDescription = $shortDescription;
     }
@@ -82,27 +87,27 @@ class Author
         return $this->id;
     }
 
-    public function name(): string
+    public function name(): Name
     {
         return $this->name;
     }
 
-    public function alias(): string
+    public function alias(): Alias
     {
         return $this->alias;
     }
 
-    public function email(): string
+    public function email(): Email
     {
         return $this->email;
     }
 
-    public function description(): string
+    public function description(): Description
     {
         return $this->description;
     }
 
-    public function shortDescription(): string
+    public function shortDescription(): ShortDescription
     {
         return $this->shortDescription;
     }
