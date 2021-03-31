@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class MysqlAuthorRepositoryTest extends TestCase
 {
-    private const EMAIL = 'an_email';
+    private const EMAIL = 'an@email.com';
 
     private $connection;
     private $mySqlAuthorRepository;
@@ -38,12 +38,11 @@ class MysqlAuthorRepositoryTest extends TestCase
     /** @test */
     public function should_save_an_author_to_database(): void
     {
-        $email = 'an@email.com';
-        $author = AuthorBuilder::anAuthor()->withEmail(new Email($email))->build();
+        $author = AuthorBuilder::anAuthor()->withEmail(new Email(self::EMAIL))->build();
 
         $this->mySqlAuthorRepository->save($author);
 
-        self::assertTrue($this->authorExists($email));
+        self::assertTrue($this->authorExists(self::EMAIL));
     }
 
     private function authorExists(string $email): bool
