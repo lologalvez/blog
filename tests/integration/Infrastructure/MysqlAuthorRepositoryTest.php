@@ -13,7 +13,7 @@ class MysqlAuthorRepositoryTest extends TestCase
     private const EMAIL = 'an@email.com';
 
     private $connection;
-    private $mySqlAuthorRepository;
+    private MySqlAuthorRepository $mySqlAuthorRepository;
 
     protected function setUp(): void
     {

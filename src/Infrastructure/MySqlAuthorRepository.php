@@ -16,17 +16,19 @@ class MySqlAuthorRepository
 
     public function save(Author $author)
     {
+        $authorAsArray = $author->asArray();
+
         $this->connection->insert(
             'authors',
             [
-                'id' => $author->id()->toString(),
-                'name' => $author->name()->toString(),
-                'alias' => $author->alias()->toString(),
-                'contact_email' => $author->email()->toString(),
-                'personal_description' => $author->description()->toString(),
-                'short_description' => $author->shortDescription()->toString(),
-                'avatar' => $author->avatar(),
-                'social_media' => json_encode($author->socialMediaLinks(), true)
+                'id' => $authorAsArray['id'],
+                'name' => $authorAsArray['name'],
+                'alias' => $authorAsArray['alias'],
+                'contact_email' => $authorAsArray['email'],
+                'personal_description' => $authorAsArray['description'],
+                'short_description' => $authorAsArray['shortDescription'],
+                'avatar' => $authorAsArray['avatar'],
+                'social_media' => json_encode($authorAsArray['socialMediaLinks'], true)
             ]
         );
     }

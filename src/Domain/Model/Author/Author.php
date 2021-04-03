@@ -82,43 +82,17 @@ class Author
         $this->socialMediaLinks = $socialMediaLinks;
     }
 
-    public function id(): Id
+    public function asArray(): array
     {
-        return $this->id;
-    }
-
-    public function name(): Name
-    {
-        return $this->name;
-    }
-
-    public function alias(): Alias
-    {
-        return $this->alias;
-    }
-
-    public function email(): Email
-    {
-        return $this->email;
-    }
-
-    public function description(): Description
-    {
-        return $this->description;
-    }
-
-    public function shortDescription(): ShortDescription
-    {
-        return $this->shortDescription;
-    }
-
-    public function avatar(): string
-    {
-        return $this->avatar;
-    }
-
-    public function socialMediaLinks(): array
-    {
-        return $this->socialMediaLinks;
+        return [
+            'id' => $this->id->toString(),
+            'name' => $this->name->toString(),
+            'alias' => $this->alias->toString(),
+            'email' => $this->email->toString(),
+            'description' => $this->description->toString(),
+            'shortDescription' => $this->shortDescription->toString(),
+            'avatar' => $this->avatar,
+            'socialMediaLinks' => $this->socialMediaLinks,
+        ];
     }
 }
