@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Infrastructure;
+namespace App\Infrastructure\Model\Author;
 
 use App\Domain\Model\Author\Author;
+use App\Domain\Model\Author\AuthorRepository;
 use Doctrine\DBAL\Driver\Connection;
 
-class MySqlAuthorRepository
+class MySqlAuthorRepository implements AuthorRepository
 {
     private Connection $connection;
 
@@ -14,7 +15,7 @@ class MySqlAuthorRepository
         $this->connection = $connection;
     }
 
-    public function save(Author $author)
+    public function save(Author $author): void
     {
         $authorAsArray = $author->asArray();
 

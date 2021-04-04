@@ -5,5 +5,5 @@ health:
 
 create-author:
     path: /authors
-    controller: App\Controller\AuthorsController::create
-    method: [POST]
+    controller: App\Controller\Authors\AuthorsController::create
+    methods: [POST]

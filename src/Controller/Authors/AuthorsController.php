@@ -6,8 +6,7 @@ namespace App\Controller\Authors;
 
 use App\Application\Author\CreateAuthor;
 use App\JsonResponseBuilder;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use App\Infrastructure\Request;
 
 class AuthorsController
 {
@@ -18,7 +17,7 @@ class AuthorsController
         $this->createAuthor = $createAuthor;
     }
 
-    public function create(Request $request): JsonResponse
+    public function create(Request $request)
     {
         $formFields = $request->getJsonDecodedContent();
 

@@ -29,3 +29,36 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Controller\Authors\AuthorsController:
+        class: App\Controller\Authors\AuthorsController
+        arguments:
+            - '@App\Application\Author\CreateAuthor'
+        tags: ['controller.service_arguments']
+
+    App\Application\Author\CreateAuthor:
+        class: App\Application\Author\CreateAuthor
+        arguments:
+            - '@App\Infrastructure\Model\Author\MySqlAuthorRepository'
+            - '@App\Infrastructure\Model\Id\RamseyUuidGenerator'
+
+    App\Infrastructure\Model\Author\MySqlAuthorRepository:
+        class: App\Infrastructure\Model\Author\MySqlAuthorRepository
+        arguments:
+            - '@db.blog'
+
+    App\Infrastructure\Model\Id\RamseyUuidGenerator:
+        class: App\Infrastructure\Model\Id\RamseyUuidGenerator
+
+    db.blog:
+        class: Doctrine\DBAL\Connection
+        factory: Doctrine\DBAL\DriverManager::getConnection
+        arguments:
+            $params:
+                driver: pdo_mysql
+                host: '%env(MYSQL_HOST)%'
+                port: ~
+                user: '%env(MYSQL_USER)%'
+                password: '%env(MYSQL_PASSWORD)%'
+                dbname: '%env(MYSQL_DATABASE)%'
+                charset: UTF8
