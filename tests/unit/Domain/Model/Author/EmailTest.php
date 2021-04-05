@@ -15,4 +15,12 @@ class EmailTest extends TestCase
         $this->expectExceptionMessage('Invalid email format');
         new Email('an invalid email');
     }
+
+    /** @test */
+    public function should_not_be_null(): void
+    {
+        $this->expectException(InvalidAuthorDataException::class);
+        $this->expectExceptionMessage('Author Email is a mandatory field');
+        new Email(null);
+    }
 }

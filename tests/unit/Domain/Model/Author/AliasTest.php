@@ -31,4 +31,12 @@ class AliasTest extends TestCase
         $this->expectExceptionMessage('Alias cannot be empty');
         new Alias('');
     }
+
+    /** @test */
+    public function should_not_be_null(): void
+    {
+        $this->expectException(InvalidAuthorDataException::class);
+        $this->expectExceptionMessage('Author Alias is a mandatory field');
+        new Alias(null);
+    }
 }

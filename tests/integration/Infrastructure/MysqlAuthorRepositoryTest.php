@@ -2,7 +2,6 @@
 
 namespace App\Tests\integration\Infrastructure;
 
-use App\Domain\Model\Author\Email;
 use App\Infrastructure\Model\Author\MySqlAuthorRepository;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use Doctrine\DBAL\DriverManager;
@@ -38,7 +37,7 @@ class MysqlAuthorRepositoryTest extends TestCase
     /** @test */
     public function should_save_an_author_to_database(): void
     {
-        $author = AuthorBuilder::anAuthor()->withEmail(new Email(self::EMAIL))->build();
+        $author = AuthorBuilder::anAuthor()->withEmail(self::EMAIL)->build();
 
         $this->mySqlAuthorRepository->save($author);
 

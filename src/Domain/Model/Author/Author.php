@@ -17,7 +17,7 @@ class Author
     private string $avatar;
     private array $socialMediaLinks;
 
-    public function __construct(
+    private function __construct(
         Id $id,
         Name $name,
         Alias $alias,
@@ -35,6 +35,20 @@ class Author
         $this->setShortDescription($shortDescription);
         $this->setAvatar($avatar);
         $this->setSocialMediaLinks($socialMediaLinks);
+    }
+
+    public static function createFrom(Id $id, array $authorData): self
+    {
+        return new self(
+            $id,
+            new Name($authorData['name'] ?? null),
+            new Alias($authorData['alias'] ?? null),
+            new Email($authorData['email'] ?? null),
+            new Description($authorData['description'] ?? ''),
+            new ShortDescription($authorData['short_description'] ?? ''),
+            $authorData['avatar'] ?? '',
+            $authorData['social_media_links'] ?? []
+        );
     }
 
     private function setId(Id $id)

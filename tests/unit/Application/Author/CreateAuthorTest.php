@@ -57,11 +57,11 @@ class CreateAuthorTest extends TestCase
 
         $expectedAuthor = AuthorBuilder::anAuthor()
             ->withId(new Id(self::AUTHOR_ID))
-            ->withName(new Name('an author name'))
-            ->withAlias(new Alias('an_alias'))
-            ->withEmail(new Email('an@email.dev'))
-            ->withDescription(new Description('a description'))
-            ->withShortDescription(new ShortDescription('a short description'))
+            ->withName('an author name')
+            ->withAlias('an_alias')
+            ->withEmail('an@email.dev')
+            ->withDescription('a description')
+            ->withShortDescription('a short description')
             ->withAvatar('an avatar')
             ->withSocialMediaLinks(['instagram' => 'an instagram link'])
             ->build();

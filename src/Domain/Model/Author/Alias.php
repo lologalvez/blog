@@ -8,8 +8,11 @@ class Alias
 
     private string $alias;
 
-    public function __construct(string $alias)
+    public function __construct(?string $alias)
     {
+        if (null === $alias) {
+            throw new InvalidAuthorDataException('Author Alias is a mandatory field');
+        }
         $this->setAlias($alias);
     }
 

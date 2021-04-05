@@ -10,7 +10,7 @@ class Description
 
     private string $description;
 
-    public function __construct(string $description)
+    public function __construct(?string $description)
     {
         $this->setDescription($description);
     }

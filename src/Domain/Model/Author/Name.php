@@ -8,8 +8,11 @@ class Name
 
     private string $name;
 
-    public function __construct(string $name)
+    public function __construct(?string $name)
     {
+        if (null === $name) {
+            throw new InvalidAuthorDataException('Author Name is a mandatory field');
+        }
         $this->setName($name);
     }
 

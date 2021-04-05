@@ -42,4 +42,12 @@ class NameTest extends TestCase
         $this->expectExceptionMessage('Name cannot be empty');
         new Name('');
     }
+
+    /** @test */
+    public function should_not_be_null(): void
+    {
+        $this->expectException(InvalidAuthorDataException::class);
+        $this->expectExceptionMessage('Author Name is a mandatory field');
+        new Name(null);
+    }
 }

@@ -6,11 +6,6 @@ namespace App\Application\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
-use App\Domain\Model\Author\Alias;
-use App\Domain\Model\Author\Description;
-use App\Domain\Model\Author\Email;
-use App\Domain\Model\Author\Name;
-use App\Domain\Model\Author\ShortDescription;
 use App\Domain\Model\Id\IdGenerator;
 
 class CreateAuthor
@@ -26,15 +21,9 @@ class CreateAuthor
 
     public function execute(array $authorData): void
     {
-        $author = new Author(
+        $author = Author::createFrom(
             $this->idGenerator->generate(),
-            new Name($authorData['name']),
-            new Alias($authorData['alias']),
-            new Email($authorData['email']),
-            new Description($authorData['description']),
-            new ShortDescription($authorData['short_description']),
-            $authorData['avatar'],
-            $authorData['social_media_links']
+            $authorData
         );
 
         $this->authorRepository->save($author);
