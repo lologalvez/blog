@@ -6,9 +6,8 @@ namespace App\Controller\Authors;
 
 use App\Application\Author\CreateAuthor;
 use App\Domain\Model\Author\InvalidAuthorDataException;
-use App\Infrastructure\RequestBodyIsNotAValidJSON;
-use App\JsonResponseBuilder;
 use App\Infrastructure\Request;
+use App\JsonResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AuthorsController

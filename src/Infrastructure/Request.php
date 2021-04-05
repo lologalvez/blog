@@ -3,7 +3,6 @@
 namespace App\Infrastructure;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
-
 use function json_decode;
 
 class Request extends SymfonyRequest
