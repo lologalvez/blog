@@ -11,4 +11,4 @@ create-author:
 get-author:
     path: /authors/{authorId}
     controller: App\Controller\Authors\AuthorsController::get
-     methods: [GET]
+    methods: [GET]
