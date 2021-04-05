@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Model\Author;
 
-use App\Domain\Model\Author\Alias;
-use App\Domain\Model\Author\Description;
-use App\Domain\Model\Author\Email;
-use App\Domain\Model\Author\Name;
-use App\Domain\Model\Author\ShortDescription;
 use App\Domain\Model\Id\Id;
 
 class Author
