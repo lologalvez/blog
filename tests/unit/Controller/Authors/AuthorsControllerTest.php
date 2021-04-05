@@ -6,10 +6,12 @@ namespace App\Tests\unit\Controller\Authors;
 
 use App\Application\Author\CreateAuthor;
 use App\Controller\Authors\AuthorsController;
+use App\Domain\Model\Author\InvalidAuthorDataException;
 use App\JsonResponseBuilder;
 use App\Tests\unit\Controller\ControllerAssertions;
 use App\Tests\unit\Controller\RequestBuilder;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 class AuthorsControllerTest extends TestCase
@@ -48,5 +50,22 @@ class AuthorsControllerTest extends TestCase
 
         $this->createAuthor->execute($authorData)->shouldHaveBeenCalled();
         ControllerAssertions::assertResponse(JsonResponseBuilder::created(), $response);
+    }
+
+    /** @test */
+    public function should_return_error_when_author_creation_fails(): void
+    {
+        $authorData = ['author' => 'data'];
+        $request = RequestBuilder::post()
+            ->to('/authors')
+            ->withFormFields($authorData)
+            ->build();
+        $exception = new InvalidAuthorDataException('an error message');
+        $this->createAuthor->execute(Argument::any())->willThrow($exception);
+
+        $response = $this->controller->create($request);
+
+        $expectedError = ['message' => 'an error message'];
+        ControllerAssertions::assertResponse(JsonResponseBuilder::error($expectedError), $response);
     }
 }

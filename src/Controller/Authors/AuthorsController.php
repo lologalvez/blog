@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Controller\Authors;
 
 use App\Application\Author\CreateAuthor;
+use App\Domain\Model\Author\InvalidAuthorDataException;
+use App\Infrastructure\RequestBodyIsNotAValidJSON;
 use App\JsonResponseBuilder;
 use App\Infrastructure\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AuthorsController
 {
@@ -17,12 +20,14 @@ class AuthorsController
         $this->createAuthor = $createAuthor;
     }
 
-    public function create(Request $request)
+    public function create(Request $request): JsonResponse
     {
         $formFields = $request->getJsonDecodedContent();
-
-        $this->createAuthor->execute($formFields);
-
-        return JsonResponseBuilder::created();
+        try {
+            $this->createAuthor->execute($formFields);
+            return JsonResponseBuilder::created();
+        } catch (InvalidAuthorDataException $e) {
+            return JsonResponseBuilder::error(['message' => $e->getMessage()]);
+        }
     }
 }
