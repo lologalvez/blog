@@ -8,11 +8,6 @@ class Name
 
     private string $name;
 
-    /**
-     * Name constructor.
-     * @param string|null $name
-     * @throws InvalidAuthorDataException
-     */
     public function __construct(?string $name)
     {
         if (null === $name) {
