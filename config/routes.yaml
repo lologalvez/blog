@@ -7,3 +7,8 @@ create-author:
     path: /authors
     controller: App\Controller\Authors\AuthorsController::create
     methods: [POST]
+
+get-author:
+    path: /authors/{authorId}
+    controller: App\Controller\Authors\AuthorsController::get
+     methods: [GET]
