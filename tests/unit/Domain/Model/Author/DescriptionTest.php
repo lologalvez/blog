@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\unit\Domain\Model\Author\Data;
+namespace App\Tests\unit\Domain\Model\Author;
 
 use App\Domain\Model\Author\InvalidAuthorDataException;
 use App\Domain\Model\Author\Description;
