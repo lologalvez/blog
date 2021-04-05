@@ -21,9 +21,9 @@ class AuthorsController
 
     public function create(Request $request): JsonResponse
     {
-        $formFields = $request->getJsonDecodedContent();
+        $authorData = $request->getJsonDecodedContent();
         try {
-            $this->createAuthor->execute($formFields);
+            $this->createAuthor->execute($authorData);
             return JsonResponseBuilder::created();
         } catch (InvalidAuthorDataException $e) {
             return JsonResponseBuilder::error(['message' => $e->getMessage()]);
