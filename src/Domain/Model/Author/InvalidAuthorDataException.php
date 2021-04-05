@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Model\Author\Data;
+namespace App\Domain\Model\Author;
 
 use Exception;
 use Throwable;

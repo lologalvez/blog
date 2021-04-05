@@ -2,7 +2,7 @@
 
 namespace App\Tests\integration\Infrastructure;
 
-use App\Domain\Model\Author\Data\Email;
+use App\Domain\Model\Author\Email;
 use App\Infrastructure\Model\Author\MySqlAuthorRepository;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use Doctrine\DBAL\DriverManager;

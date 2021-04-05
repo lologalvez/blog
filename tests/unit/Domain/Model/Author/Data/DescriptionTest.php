@@ -2,8 +2,8 @@
 
 namespace App\Tests\unit\Domain\Model\Author\Data;
 
-use App\Domain\Model\Author\Data\InvalidAuthorDataException;
-use App\Domain\Model\Author\Data\Description;
+use App\Domain\Model\Author\InvalidAuthorDataException;
+use App\Domain\Model\Author\Description;
 use PHPUnit\Framework\TestCase;
 
 class DescriptionTest extends TestCase
