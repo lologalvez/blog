@@ -4,6 +4,7 @@ namespace App\Infrastructure\Model\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
+use App\Domain\Model\Id\Id;
 use Doctrine\DBAL\Driver\Connection;
 
 class MySqlAuthorRepository implements AuthorRepository
@@ -32,5 +33,10 @@ class MySqlAuthorRepository implements AuthorRepository
                 'social_media' => json_encode($authorAsArray['socialMediaLinks'], true)
             ]
         );
+    }
+
+    public function findOne(Id $authorId): Author
+    {
+        // TODO: Implement findOne() method.
     }
 }
