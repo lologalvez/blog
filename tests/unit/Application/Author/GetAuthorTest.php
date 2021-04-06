@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Application\Author;
+namespace App\Tests\unit\Application\Author;
 
 use App\Application\Author\GetAuthor;
 use App\Domain\Model\Author\AuthorRepository;
