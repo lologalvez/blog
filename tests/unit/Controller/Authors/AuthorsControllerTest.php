@@ -79,7 +79,6 @@ class AuthorsControllerTest extends TestCase
     /** @test */
     public function should_return_an_existing_author(): void
     {
-        self::markTestIncomplete('WIP');
         $author = AuthorBuilder::anAuthor()->withId(new Id(self::AUTHOR_ID))->build();
         $this->getAuthor->execute(Argument::any())->willReturn($author);
 

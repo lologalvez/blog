@@ -27,6 +27,7 @@ class AuthorsController
         $authorData = $request->getJsonDecodedContent();
         try {
             $this->createAuthor->execute($authorData);
+
             return JsonResponseBuilder::created();
         } catch (InvalidAuthorDataException $e) {
             return JsonResponseBuilder::error(['message' => $e->getMessage()]);
@@ -35,6 +36,8 @@ class AuthorsController
 
     public function get(string $authorId): JsonResponse
     {
-        return new JsonResponse();
+        $author = $this->getAuthor->execute($authorId);
+
+        return JsonResponseBuilder::success($author->asArray());
     }
 }
