@@ -27,14 +27,14 @@ class Author
         string $avatar,
         array $socialMediaLinks
     ) {
-        $this->setId($id);
-        $this->setName($name);
-        $this->setAlias($alias);
-        $this->setEmail($email);
-        $this->setDescription($description);
-        $this->setShortDescription($shortDescription);
-        $this->setAvatar($avatar);
-        $this->setSocialMediaLinks($socialMediaLinks);
+        $this->id = $id;
+        $this->name = $name;
+        $this->alias = $alias;
+        $this->email = $email;
+        $this->description = $description;
+        $this->shortDescription = $shortDescription;
+        $this->avatar = $avatar;
+        $this->socialMediaLinks = $socialMediaLinks;
     }
 
     public static function createFrom(Id $id, array $authorData): self
@@ -49,46 +49,6 @@ class Author
             $authorData['avatar'] ?? '',
             $authorData['social_media_links'] ?? []
         );
-    }
-
-    private function setId(Id $id)
-    {
-        $this->id = $id;
-    }
-
-    private function setName(Name $name)
-    {
-        $this->name = $name ;
-    }
-
-    private function setAlias(Alias $alias)
-    {
-        $this->alias = $alias;
-    }
-
-    private function setEmail(Email $email): void
-    {
-        $this->email = $email;
-    }
-
-    private function setDescription(Description $description): void
-    {
-        $this->description = $description;
-    }
-
-    private function setShortDescription(ShortDescription $shortDescription): void
-    {
-        $this->shortDescription = $shortDescription;
-    }
-
-    private function setAvatar(string $avatar): void
-    {
-        $this->avatar = $avatar;
-    }
-
-    private function setSocialMediaLinks(array $socialMediaLinks): void
-    {
-        $this->socialMediaLinks = $socialMediaLinks;
     }
 
     public function asArray(): array
