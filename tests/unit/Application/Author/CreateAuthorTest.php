@@ -43,11 +43,11 @@ class CreateAuthorTest extends TestCase
         $authorData = [
             'name' => 'an author name',
             'alias' => 'an_alias',
-            'email' => 'an@email.dev',
-            'description' => 'a description',
+            'contact_email' => 'an@email.dev',
+            'personal_description' => 'a description',
             'short_description' => 'a short description',
             'avatar' => 'an avatar',
-            'social_media_links' => [
+            'social_media' => [
                 'instagram' => 'an instagram link',
             ],
         ];

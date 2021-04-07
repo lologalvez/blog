@@ -2,6 +2,8 @@
 
 namespace App\Tests\integration\Infrastructure;
 
+use App\Domain\Model\Author\Author;
+use App\Domain\Model\Id\Id;
 use App\Infrastructure\Model\Author\MySqlAuthorRepository;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use Doctrine\DBAL\DriverManager;
@@ -44,6 +46,21 @@ class MysqlAuthorRepositoryTest extends TestCase
         self::assertTrue($this->authorExists(self::EMAIL));
     }
 
+    /** @test */
+    public function should_retrieve_an_author_from_database(): void
+    {
+        $id = new Id('3fd4fb30-c9e2-415f-a167-092cdcf29f18');
+        $author = AuthorBuilder::anAuthor()
+            ->withEmail(self::EMAIL)
+            ->withId($id)
+            ->build();
+        $this->saveAuthor($author);
+
+        $retrievedAuthor = $this->mySqlAuthorRepository->findById($id);
+
+        self::assertEquals($author, $retrievedAuthor);
+    }
+
     private function authorExists(string $email): bool
     {
         $authorResult = $this->connection->executeQuery(
@@ -56,6 +73,25 @@ class MysqlAuthorRepositoryTest extends TestCase
         }
 
         return true;
+    }
+
+    private function saveAuthor(Author $author)
+    {
+        $authorAsArray = $author->asArray();
+
+        $this->connection->insert(
+            'authors',
+            [
+                'id' => $authorAsArray['id'],
+                'name' => $authorAsArray['name'],
+                'alias' => $authorAsArray['alias'],
+                'contact_email' => $authorAsArray['contact_email'],
+                'personal_description' => $authorAsArray['personal_description'],
+                'short_description' => $authorAsArray['short_description'],
+                'avatar' => $authorAsArray['avatar'],
+                'social_media' => json_encode($authorAsArray['social_media'], true)
+            ]
+        );
     }
 
     private function clearDataBase(): void

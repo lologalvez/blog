@@ -89,11 +89,11 @@ class AuthorBuilder
             [
                'name' => $this->name,
                'alias' => $this->alias,
-               'email' => $this->email,
-               'description' => $this->description,
+               'contact_email' => $this->email,
+               'personal_description' => $this->description,
                'short_description' => $this->shortDescription,
                'avatar' => $this->avatar,
-               'social_media_links' => $this->socialMediaLinks,
+               'social_media' => $this->socialMediaLinks,
             ]
         );
     }

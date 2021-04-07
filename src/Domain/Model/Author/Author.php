@@ -43,11 +43,11 @@ class Author
             $id,
             new Name($authorData['name'] ?? null),
             new Alias($authorData['alias'] ?? null),
-            new Email($authorData['email'] ?? null),
-            new Description($authorData['description'] ?? ''),
+            new Email($authorData['contact_email'] ?? null),
+            new Description($authorData['personal_description'] ?? ''),
             new ShortDescription($authorData['short_description'] ?? ''),
             $authorData['avatar'] ?? '',
-            $authorData['social_media_links'] ?? []
+            $authorData['social_media'] ?? []
         );
     }
 
@@ -57,11 +57,11 @@ class Author
             'id' => $this->id->toString(),
             'name' => $this->name->toString(),
             'alias' => $this->alias->toString(),
-            'email' => $this->email->toString(),
-            'description' => $this->description->toString(),
-            'shortDescription' => $this->shortDescription->toString(),
+            'contact_email' => $this->email->toString(),
+            'personal_description' => $this->description->toString(),
+            'short_description' => $this->shortDescription->toString(),
             'avatar' => $this->avatar,
-            'socialMediaLinks' => $this->socialMediaLinks,
+            'social_media' => $this->socialMediaLinks,
         ];
     }
 }

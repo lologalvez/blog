@@ -26,17 +26,25 @@ class MySqlAuthorRepository implements AuthorRepository
                 'id' => $authorAsArray['id'],
                 'name' => $authorAsArray['name'],
                 'alias' => $authorAsArray['alias'],
-                'contact_email' => $authorAsArray['email'],
-                'personal_description' => $authorAsArray['description'],
-                'short_description' => $authorAsArray['shortDescription'],
+                'contact_email' => $authorAsArray['contact_email'],
+                'personal_description' => $authorAsArray['personal_description'],
+                'short_description' => $authorAsArray['short_description'],
                 'avatar' => $authorAsArray['avatar'],
-                'social_media' => json_encode($authorAsArray['socialMediaLinks'], true)
+                'social_media' => json_encode($authorAsArray['social_media'], true)
             ]
         );
     }
 
     public function findById(Id $authorId): Author
     {
-        // TODO: Implement findOne() method.
+        $authorData = $this->connection
+            ->executeQuery(
+                'SELECT * FROM authors WHERE id=:adId',
+                ['adId' => $authorId->toString()]
+            )->fetch();
+
+        $authorData['social_media'] = json_decode($authorData['social_media'], true);
+
+        return Author::createFrom(new Id($authorData['id']), $authorData);
     }
 }
