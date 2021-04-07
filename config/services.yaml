@@ -42,6 +42,11 @@ services:
             - '@App\Infrastructure\Model\Author\MySqlAuthorRepository'
             - '@App\Infrastructure\Model\Id\RamseyUuidGenerator'
 
+    App\Application\Author\GetAuthor:
+        class: App\Application\Author\GetAuthor
+        arguments:
+            - '@App\Infrastructure\Model\Author\MySqlAuthorRepository'
+
     App\Infrastructure\Model\Author\MySqlAuthorRepository:
         class: App\Infrastructure\Model\Author\MySqlAuthorRepository
         arguments:

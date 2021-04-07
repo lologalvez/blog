@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class AuthorsController
 {
     private CreateAuthor $createAuthor;
-    private ?GetAuthor $getAuthor;
+    private GetAuthor $getAuthor;
 
-    public function __construct(CreateAuthor $createAuthor, GetAuthor $getAuthor = null)
+    public function __construct(CreateAuthor $createAuthor, GetAuthor $getAuthor)
     {
         $this->createAuthor = $createAuthor;
         $this->getAuthor = $getAuthor;
