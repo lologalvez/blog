@@ -23,19 +23,18 @@ class GetAuthorTest extends TestCase
     protected function setUp(): void
     {
         $this->authorRepository = $this->prophesize(AuthorRepository::class);
-        $this->getAuthor = new GetAuthor();
+        $this->getAuthor = new GetAuthor($this->authorRepository->reveal());
     }
 
     /** @test */
     public function should_retrieve_an_author_from_repository()
     {
-        self::markTestIncomplete('work in progress');
         $authorId = new Id(self::AUTHOR_ID);
         $author = AuthorBuilder::anAuthor()->withId($authorId)->build();
-        $this->authorRepository->findOne($authorId)->willReturn($author);
+        $this->authorRepository->findById($authorId)->willReturn($author);
 
-        $expectedAuthor = $this->getAuthor->execute(self::AUTHOR_ID);
+        $retrievedAuthor = $this->getAuthor->execute(self::AUTHOR_ID);
 
-        self::assertEquals($expectedAuthor, $author);
+        self::assertEquals($retrievedAuthor, $author);
     }
 }

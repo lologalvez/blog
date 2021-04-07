@@ -10,5 +10,5 @@ interface AuthorRepository
 {
     public function save(Author $author): void;
 
-    public function findOne(Id $authorId): Author;
+    public function findById(Id $authorId): Author;
 }
