@@ -12,4 +12,4 @@ A work in progress blogging platform project for personal use. Backend is being 
 ---
 App is dockerized in three containers (nginx, php-fpm and mysql). Just clone the repo and run `make init`
 
-Feel free to give feedback or ask questions, we love engaging in all kinds of programming debates and love to hear and learn from others' ideas.
+Feel free to give feedback or ask questions, we love engaging in all kinds of programming debates and hearing and learning from others' ideas.
