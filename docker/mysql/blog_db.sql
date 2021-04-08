@@ -9,7 +9,7 @@ CREATE TABLE `authors` (
     `id` varchar(36) NOT NULL,
     `name` varchar(36) NOT NULL,
     `alias` varchar(36) NOT NULL,
-    `contact_email` varchar(256) NOT NULL,
+    `contact_email` varchar(191) NOT NULL,
     `personal_description` text,
     `short_description` text NOT NULL,
     `avatar` varchar(256) NOT NULL,
