@@ -10,7 +10,7 @@ interface AuthorRepository
 {
     public function save(Author $author): void;
 
-    public function findById(Id $authorId): Author;
+    public function findById(Id $authorId): ?Author;
 
     public function emailExists(Email $email): bool;
 }

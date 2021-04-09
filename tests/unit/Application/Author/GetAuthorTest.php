@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\unit\Application\Author;
 
 use App\Application\Author\GetAuthor;
+use App\Domain\Model\Author\AuthorNotFoundException;
 use App\Domain\Model\Author\AuthorRepository;
 use App\Domain\Model\Id\Id;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
@@ -36,5 +37,14 @@ class GetAuthorTest extends TestCase
         $retrievedAuthor = $this->getAuthor->execute(self::AUTHOR_ID);
 
         self::assertEquals($retrievedAuthor, $author);
+    }
+
+    /** @test */
+    public function should_throw_an_exception_if_author_does_not_exist(): void
+    {
+        $this->authorRepository->findById(new Id(self::AUTHOR_ID))->willReturn(null);
+
+        $this->expectException(AuthorNotFoundException::class);
+        $this->getAuthor->execute(self::AUTHOR_ID);
     }
 }
