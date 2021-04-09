@@ -35,7 +35,7 @@ class CreateAuthor
     private function isEmailUnique($contact_email): void
     {
         if ($this->authorRepository->emailExists(new Email($contact_email))) {
-            throw new AuthorExistsException();
+            throw new AuthorExistsException('Author Email already in use');
         }
     }
 }

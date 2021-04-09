@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\unit\Controller\Authors;
 
+use App\Application\Author\AuthorExistsException;
 use App\Application\Author\CreateAuthor;
 use App\Application\Author\GetAuthor;
 use App\Controller\Authors\AuthorsController;
@@ -68,6 +69,23 @@ class AuthorsControllerTest extends TestCase
             ->withFormFields($authorData)
             ->build();
         $exception = new InvalidAuthorDataException('an error message');
+        $this->createAuthor->execute(Argument::any())->willThrow($exception);
+
+        $response = $this->controller->create($request);
+
+        $expectedError = ['message' => 'an error message'];
+        ControllerAssertions::assertResponse(JsonResponseBuilder::error($expectedError), $response);
+    }
+
+    /** @test */
+    public function should_return_error_if_email_already_exists(): void
+    {
+        $authorData = ['contact_email' => 'an_existing@email.mh'];
+        $request = RequestBuilder::post()
+            ->to('/authors')
+            ->withFormFields($authorData)
+            ->build();
+        $exception = new AuthorExistsException('an error message');
         $this->createAuthor->execute(Argument::any())->willThrow($exception);
 
         $response = $this->controller->create($request);

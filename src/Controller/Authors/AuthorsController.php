@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Authors;
 
+use App\Application\Author\AuthorExistsException;
 use App\Application\Author\CreateAuthor;
 use App\Application\Author\GetAuthor;
 use App\Domain\Model\Author\InvalidAuthorDataException;
@@ -29,7 +30,7 @@ class AuthorsController
             $this->createAuthor->execute($authorData);
 
             return JsonResponseBuilder::created();
-        } catch (InvalidAuthorDataException $e) {
+        } catch (InvalidAuthorDataException | AuthorExistsException $e) {
             return JsonResponseBuilder::error(['message' => $e->getMessage()]);
         }
     }
