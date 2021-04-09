@@ -3,6 +3,7 @@
 namespace App\Tests\integration\Infrastructure;
 
 use App\Domain\Model\Author\Author;
+use App\Domain\Model\Author\Email;
 use App\Domain\Model\Id\Id;
 use App\Infrastructure\Model\Author\MySqlAuthorRepository;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
@@ -59,6 +60,21 @@ class MysqlAuthorRepositoryTest extends TestCase
         $retrievedAuthor = $this->mySqlAuthorRepository->findById($id);
 
         self::assertEquals($author, $retrievedAuthor);
+    }
+
+    /** @test */
+    public function should_inform_if_email_exists(): void
+    {
+        $author = AuthorBuilder::anAuthor()->withEmail(self::EMAIL)->build();
+        $this->saveAuthor($author);
+
+        self::assertTrue($this->mySqlAuthorRepository->emailExists(new Email(self::EMAIL)));
+    }
+
+    /** @test */
+    public function should_inform_if_email_does_not_exist(): void
+    {
+        self::assertFalse($this->mySqlAuthorRepository->emailExists(new Email(self::EMAIL)));
     }
 
     private function authorExists(string $email): bool

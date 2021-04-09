@@ -51,6 +51,15 @@ class MySqlAuthorRepository implements AuthorRepository
 
     public function emailExists(Email $email): bool
     {
-        // TODO: Implement emailExists() method.
+        $authorResult = $this->connection->executeQuery(
+            "SELECT contact_email FROM authors WHERE contact_email=:email",
+            ['email' => $email->toString()]
+        )->fetchOne();
+
+        if (empty($authorResult)) {
+            return false;
+        }
+
+        return true;
     }
 }
