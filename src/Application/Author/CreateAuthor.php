@@ -6,6 +6,7 @@ namespace App\Application\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
+use App\Domain\Model\Author\Email;
 use App\Domain\Model\Id\IdGenerator;
 
 class CreateAuthor
@@ -21,11 +22,20 @@ class CreateAuthor
 
     public function execute(array $authorData): void
     {
+        $this->isEmailUnique($authorData['contact_email']);
+
         $author = Author::createFrom(
             $this->idGenerator->generate(),
             $authorData
         );
 
         $this->authorRepository->save($author);
+    }
+
+    private function isEmailUnique($contact_email): void
+    {
+        if ($this->authorRepository->emailExists(new Email($contact_email))) {
+            throw new AuthorExistsException();
+        }
     }
 }

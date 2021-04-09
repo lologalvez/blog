@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\unit\Application\Author;
 
+use App\Application\Author\AuthorExistsException;
 use App\Application\Author\CreateAuthor;
 use App\Domain\Model\Author\AuthorRepository;
-use App\Domain\Model\Author\Alias;
-use App\Domain\Model\Author\Description;
 use App\Domain\Model\Author\Email;
-use App\Domain\Model\Author\Name;
-use App\Domain\Model\Author\ShortDescription;
 use App\Domain\Model\Id\Id;
 use App\Domain\Model\Id\IdGenerator;
 use App\Tests\unit\Domain\Model\Author\AuthorBuilder;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 class CreateAuthorTest extends TestCase
@@ -35,6 +33,8 @@ class CreateAuthorTest extends TestCase
             $this->authorRepository->reveal(),
             $this->idGenerator->reveal()
         );
+
+        $this->authorRepository->emailExists(Argument::any())->willReturn(false);
     }
 
     /** @test */
@@ -66,5 +66,27 @@ class CreateAuthorTest extends TestCase
             ->withSocialMediaLinks(['instagram' => 'an instagram link'])
             ->build();
         $this->authorRepository->save($expectedAuthor)->shouldHaveBeenCalled();
+    }
+
+    /** @test */
+    public function should_throw_exception_if_email_already_exists_in_repository(): void
+    {
+        $email = 'anExisting@email.dev';
+        $authorData = [
+            'name' => 'an author name',
+            'alias' => 'an_alias',
+            'contact_email' => $email,
+            'personal_description' => 'a description',
+            'short_description' => 'a short description',
+            'avatar' => 'an avatar',
+            'social_media' => [
+                'instagram' => 'an instagram link',
+            ],
+        ];
+        $existingEmail = new Email($email);
+        $this->authorRepository->emailExists($existingEmail)->willReturn(true);
+
+        self::expectException(AuthorExistsException::class);
+        $this->createAuthor->execute($authorData);
     }
 }

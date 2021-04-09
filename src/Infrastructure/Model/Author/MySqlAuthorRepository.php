@@ -4,6 +4,7 @@ namespace App\Infrastructure\Model\Author;
 
 use App\Domain\Model\Author\Author;
 use App\Domain\Model\Author\AuthorRepository;
+use App\Domain\Model\Author\Email;
 use App\Domain\Model\Id\Id;
 use Doctrine\DBAL\Driver\Connection;
 
@@ -46,5 +47,10 @@ class MySqlAuthorRepository implements AuthorRepository
         $authorData['social_media'] = json_decode($authorData['social_media'], true);
 
         return Author::createFrom(new Id($authorData['id']), $authorData);
+    }
+
+    public function emailExists(Email $email): bool
+    {
+        // TODO: Implement emailExists() method.
     }
 }
