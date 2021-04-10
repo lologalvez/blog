@@ -36,13 +36,17 @@ class MySqlAuthorRepository implements AuthorRepository
         );
     }
 
-    public function findById(Id $authorId): Author
+    public function findById(Id $authorId): ?Author
     {
         $authorData = $this->connection
             ->executeQuery(
-                'SELECT * FROM authors WHERE id=:adId',
-                ['adId' => $authorId->toString()]
+                'SELECT * FROM authors WHERE id=:authorId',
+                ['authorId' => $authorId->toString()]
             )->fetch();
+
+        if (false === $authorData) {
+            return null;
+        }
 
         $authorData['social_media'] = json_decode($authorData['social_media'], true);
 

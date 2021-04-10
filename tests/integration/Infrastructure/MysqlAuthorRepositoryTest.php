@@ -91,6 +91,15 @@ class MysqlAuthorRepositoryTest extends TestCase
         return true;
     }
 
+    /** @test */
+    public function should_return_null_if_author_does_not_exist_for_a_given_author_id(): void
+    {
+        $aTestId = new Id('50bd5a5f-70d6-4037-b19b-36663e71c2fd');
+        $this->deleteAuthorById($aTestId);
+
+        self::assertNull($this->mySqlAuthorRepository->findById($aTestId));
+    }
+
     private function saveAuthor(Author $author)
     {
         $authorAsArray = $author->asArray();
@@ -115,6 +124,14 @@ class MysqlAuthorRepositoryTest extends TestCase
         $this->connection->executeQuery(
             "DELETE FROM authors where contact_email=:email",
             ['email' => self::EMAIL]
+        );
+    }
+
+    private function deleteAuthorById(Id $aTestId)
+    {
+        $this->connection->executeQuery(
+            "DELETE FROM authors where id=:id",
+            ['id' => $aTestId->toString()]
         );
     }
 }
