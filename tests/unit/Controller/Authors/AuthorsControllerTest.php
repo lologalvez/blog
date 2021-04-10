@@ -8,6 +8,7 @@ use App\Application\Author\AuthorExistsException;
 use App\Application\Author\CreateAuthor;
 use App\Application\Author\GetAuthor;
 use App\Controller\Authors\AuthorsController;
+use App\Domain\Model\Author\AuthorNotFoundException;
 use App\Domain\Model\Author\InvalidAuthorDataException;
 use App\Domain\Model\Id\Id;
 use App\JsonResponseBuilder;
@@ -103,5 +104,15 @@ class AuthorsControllerTest extends TestCase
         $response = $this->controller->get(self::AUTHOR_ID);
 
         ControllerAssertions::assertResponse(JsonResponseBuilder::success($author->asArray()), $response);
+    }
+
+    /** @test */
+    public function should_return_an_error_if_author_is_not_found(): void
+    {
+        $this->getAuthor->execute(self::AUTHOR_ID)->willThrow(new AuthorNotFoundException());
+
+        $response = $this->controller->get(self::AUTHOR_ID);
+
+        ControllerAssertions::assertResponse(JsonResponseBuilder::notFound(), $response);
     }
 }

@@ -7,6 +7,7 @@ namespace App\Controller\Authors;
 use App\Application\Author\AuthorExistsException;
 use App\Application\Author\CreateAuthor;
 use App\Application\Author\GetAuthor;
+use App\Domain\Model\Author\AuthorNotFoundException;
 use App\Domain\Model\Author\InvalidAuthorDataException;
 use App\Infrastructure\Request;
 use App\JsonResponseBuilder;
@@ -28,7 +29,6 @@ class AuthorsController
         $authorData = $request->getJsonDecodedContent();
         try {
             $this->createAuthor->execute($authorData);
-
             return JsonResponseBuilder::created();
         } catch (InvalidAuthorDataException | AuthorExistsException $e) {
             return JsonResponseBuilder::error(['message' => $e->getMessage()]);
@@ -37,8 +37,11 @@ class AuthorsController
 
     public function get(string $authorId): JsonResponse
     {
-        $author = $this->getAuthor->execute($authorId);
-
-        return JsonResponseBuilder::success($author->asArray());
+        try {
+            $author = $this->getAuthor->execute($authorId);
+            return JsonResponseBuilder::success($author->asArray());
+        } catch (AuthorNotFoundException $e) {
+            return JsonResponseBuilder::notFound();
+        }
     }
 }
