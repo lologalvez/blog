@@ -66,4 +66,9 @@ class MySqlAuthorRepository implements AuthorRepository
 
         return true;
     }
+
+    public function edit(Id $id, Author $author): void
+    {
+        // TODO: Implement edit() method.
+    }
 }
